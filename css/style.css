@@ -613,6 +613,7 @@ textarea.overflow + .attachfile {
   top: 0;
   left: 0;
   height: 0;
+  max-height: 0;
   width: 100%;
   content: '';
   background-color: #3ea3f2;
@@ -1886,6 +1887,7 @@ section {
 
   .header__nav ul li:hover::before {
     height: 6px;
+    max-height: 6px;
   }
 
   .case__content {
