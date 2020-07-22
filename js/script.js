@@ -55,12 +55,15 @@ var subnavSwiper = new Swiper('.subnav__swiper', {
   direction: 'horizontal',
   breakpoints: {
     320: {
+      allowTouchMove: true,
       slidesPerView: 1
     },
     535: {
+      allowTouchMove: true,
       slidesPerView: 2
     },
     820: {
+      allowTouchMove: true,
       slidesPerView: 3,
       spaceBetween: 35
     },
