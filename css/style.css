@@ -1840,7 +1840,6 @@ section {
   position: -webkit-sticky;
   position: sticky;
   top: 50px;
-  margin-bottom: 150px;
 }
 
 .calculation__content {
@@ -2034,6 +2033,10 @@ section {
   .about__content_reversed .about__visualwrapper {
     -webkit-box-shadow: -201.3px 40px 0px 0px #e1ecf5, -671px 40px 0px 0px #e1ecf5;
             box-shadow: -201.3px 40px 0px 0px #e1ecf5, -671px 40px 0px 0px #e1ecf5;
+  }
+
+  .about__visualwrapper {
+    margin-bottom: 150px;
   }
 }
 
@@ -2296,8 +2299,8 @@ section {
   }
 
   .case__visualwrapper {
-    -webkit-box-shadow: 20vw 30px 0px 0px #e1ecf5, 671px 20px 0px 0px #e1ecf5;
-            box-shadow: 20vw 30px 0px 0px #e1ecf5, 671px 20px 0px 0px #e1ecf5;
+    -webkit-box-shadow: 20vw 30px 0px 0px #e1ecf5, 671px 30px 0px 0px #e1ecf5;
+            box-shadow: 20vw 30px 0px 0px #e1ecf5, 671px 30px 0px 0px #e1ecf5;
   }
 
   .case__social {
@@ -2335,8 +2338,8 @@ section {
   }
 
   .about__visualwrapper {
-    -webkit-box-shadow: 20vw 30px 0px 0px #e1ecf5, 671px 20px 0px 0px #e1ecf5;
-            box-shadow: 20vw 30px 0px 0px #e1ecf5, 671px 20px 0px 0px #e1ecf5;
+    -webkit-box-shadow: 20vw 30px 0px 0px #e1ecf5, 671px 30px 0px 0px #e1ecf5;
+            box-shadow: 20vw 30px 0px 0px #e1ecf5, 671px 30px 0px 0px #e1ecf5;
   }
 }
 
