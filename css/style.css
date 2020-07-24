@@ -1747,9 +1747,22 @@ section {
   text-align: center;
 }
 
+.case__visualwrapper {
+  position: relative;
+}
+
 .case__visualwrapper img {
   -webkit-box-shadow: 0 120px 120px -110px rgba(0, 0, 0, 0.4);
           box-shadow: 0 120px 120px -110px rgba(0, 0, 0, 0.4);
+}
+
+.case__logo {
+  left: -10%;
+  position: absolute;
+  top: 5%;
+  width: 45%;
+  -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
 }
 
 .calculation__content {
@@ -2252,6 +2265,10 @@ section {
   .case__numblist li {
     margin-right: 0;
   }
+
+  .case__visualwrapper {
+    margin-left: 5%;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -2376,6 +2393,10 @@ section {
 }
 
 @media screen and (max-width: 319px) {
+  .breadcrumbs ul li a {
+    font-size: 12px;
+  }
+
   .wrapper {
     padding-right: 24px;
     padding-left: 24px;
@@ -2535,6 +2556,12 @@ section {
   }
 }
 
+@media screen and (max-width: 400px) and (min-width: 320px) {
+  .breadcrumbs ul li a {
+    font-size: calc(12px + (100vw - 320px) * (0.025));
+  }
+}
+
 @media screen and (max-width: 1500px) and (min-width: 768px) {
   .footer__logoblock {
     padding-bottom: calc(15px + (100vw - 768px) * (0.03415));
@@ -2675,6 +2702,12 @@ section {
 @media screen and (max-width: 1023px) and (min-width: 768px) {
   .case__bgtext {
     font-size: calc(120px + (100vw - 768px) * (0));
+  }
+}
+
+@media screen and (max-width: 660px) and (max-width: 450px) and (min-width: 320px) {
+  .case__numblist li .number {
+    margin-right: calc(5px + (100vw - 320px) * (0.03846));
   }
 }
 
