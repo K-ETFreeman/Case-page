@@ -1711,7 +1711,6 @@ section {
   opacity: 0.7;
   font-size: 18px;
   line-height: 120%;
-  padding-bottom: 70px;
 }
 
 .case__textitle {
@@ -1727,10 +1726,9 @@ section {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   width: 100%;
+  padding-top: 50px;
+  padding-bottom: 60px;
 }
 
 .case__numblist li {
@@ -1744,10 +1742,7 @@ section {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-.case__numblist li .number {
-  padding-bottom: 15px;
+  margin-right: 100px;
 }
 
 .case__visual {
@@ -1962,56 +1957,6 @@ section {
   .subnav__left,
   .subnav__right {
     display: none;
-  }
-}
-
-@media screen and (max-width: 1750px) {
-  .case__social {
-    padding: 4px;
-    position: relative;
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    margin: 0 auto;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    right: unset;
-    top: 0;
-    margin-top: 20px;
-    border-radius: 5px;
-  }
-
-  .case__social li {
-    border-top: none;
-  }
-
-  .case__social li:not(:last-child) {
-    padding-right: 5px;
-    border-bottom: none;
-    padding-bottom: 0px;
-  }
-
-  .case__social li:not(:first-child) {
-    padding-top: 0px;
-    padding-left: 5px;
-    border-left: 1px solid #c4c4c4;
-  }
-}
-
-@media screen and (max-width: 1365px) {
-  .case__numblist {
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-  }
-
-  .case__numblist li:not(:first-child) {
-    width: 50%;
-  }
-
-  .case__numblist li {
-    margin-bottom: 20px;
   }
 }
 
