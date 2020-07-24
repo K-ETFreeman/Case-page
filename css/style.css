@@ -1680,6 +1680,7 @@ section {
 .case__description {
   position: relative;
   z-index: 2;
+  margin-bottom: 30px;
 }
 
 .case__title {
@@ -1716,10 +1717,6 @@ section {
 .case__textitle {
   margin-top: 14px;
   font-weight: 600;
-}
-
-.case__list {
-  margin-bottom: 40px;
 }
 
 .case__numblist {
@@ -2197,6 +2194,10 @@ section {
     display: none;
   }
 
+  .case__numblist li {
+    margin-right: 80px;
+  }
+
   .case__visual {
     padding-left: 0;
     padding-bottom: 20px;
@@ -2236,6 +2237,20 @@ section {
     left: calc(95% - 40px);
     width: 40px;
     height: 40px;
+  }
+
+  .case__description {
+    margin-bottom: 0px;
+  }
+
+  .case__numblist {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+
+  .case__numblist li {
+    margin-right: 0;
   }
 }
 
@@ -2281,6 +2296,33 @@ section {
 @media screen and (max-width: 700px) {
   .headline__contacts {
     display: none;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .case__numblist {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+
+  .case__numblist li {
+    margin-bottom: 15px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+
+  .case__numblist li .number {
+    margin-right: 10px;
   }
 }
 
@@ -2430,8 +2472,12 @@ section {
     font-size: calc(14px + (100vw - 320px) * (0.00893));
   }
 
-  .case__text {
-    padding-bottom: calc(15px + (100vw - 320px) * (0.12277));
+  .case__numblist {
+    padding-top: calc(10px + (100vw - 320px) * (0.02232));
+  }
+
+  .case__numblist {
+    padding-bottom: calc(20px + (100vw - 320px) * (0.02232));
   }
 
   .calculation__title {
