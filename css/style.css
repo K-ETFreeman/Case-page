@@ -1839,7 +1839,6 @@ section {
 .about__visualwrapper {
   position: -webkit-sticky;
   position: sticky;
-  top: 50px;
 }
 
 .calculation__content {

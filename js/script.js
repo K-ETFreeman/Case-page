@@ -306,4 +306,20 @@ document.querySelectorAll('.interactive-trigger').forEach(function (item) {
   });
 }
 ;
+document.addEventListener('scroll', function () {
+  document.querySelectorAll('.stickyparallax').forEach(function (item) {
+    var parent = item.parentNode,
+        coords = parent.getBoundingClientRect(),
+        speed = item.getAttribute('data-scrollSpeed'),
+        styles = getComputedStyle(item),
+        bottom = parseFloat(styles.marginBottom),
+        distance = parent.scrollHeight - bottom - item.offsetHeight;
+    if (coords.top > window.innerHeight - item.offsetHeight || coords.top < -distance) return item.style.setProperty('top', '0px');
+    var total = distance + window.innerHeight - item.offsetHeight,
+        progress = 1 - (coords.top + distance) / total;
+    console.log(progress);
+    item.style.setProperty('top', coords.top + distance * progress + "px");
+  });
+});
+;
 objectFitImages();
