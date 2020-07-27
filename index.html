@@ -2,7 +2,7 @@
 <html lang="ru">
 
 <head>
-  <title>BTL-main</title>
+  <title>Case-page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="./css/style.min.css">
@@ -149,6 +149,16 @@
               d="M18 1.038C8.632 1.038 1.038 8.632 1.038 18c0 9.368 7.594 16.962 16.962 16.962 9.368 0 16.962-7.594 16.962-16.962 0-9.368-7.594-16.962-16.962-16.962zM36 18c0 9.941-8.059 18-18 18S0 27.941 0 18 8.059 0 18 0s18 8.059 18 18zm-25.636 6.37a.52.52 0 0 1 0-.734L18 16l7.636 7.636a.52.52 0 1 1-.734.735L18 17.469l-6.902 6.902a.52.52 0 0 1-.734 0zm0-4.968a.52.52 0 0 1 0-.734L18 11.03l7.636 7.637a.52.52 0 1 1-.734.734L18 12.5l-6.902 6.902a.52.52 0 0 1-.734 0z" />
           </g>
         </g>
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" id="next">
+        <path
+          d="M34.962 18c0-9.368-7.594-16.962-16.962-16.962C8.632 1.038 1.038 8.632 1.038 18c0 9.368 7.594 16.962 16.962 16.962 9.368 0 16.962-7.594 16.962-16.962zM18 36C8.059 36 0 27.941 0 18S8.059 0 18 0s18 8.059 18 18-8.059 18-18 18zm-2.37-25.636a.52.52 0 0 1 .734 0L24 18l-7.636 7.636a.52.52 0 1 1-.735-.734L22.531 18l-6.902-6.902a.52.52 0 0 1 0-.734z">
+        </path>
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" id="prev">
+        <path
+          d="M18 34.962c9.368 0 16.962-7.594 16.962-16.962 0-9.368-7.594-16.962-16.962-16.962C8.632 1.038 1.038 8.632 1.038 18c0 9.368 7.594 16.962 16.962 16.962zM0 18C0 8.059 8.059 0 18 0s18 8.059 18 18-8.059 18-18 18S0 27.941 0 18zm20.37-6.902L13.47 18l6.902 6.902a.52.52 0 1 1-.735.734L12 18l7.636-7.636a.52.52 0 1 1 .735.734z">
+        </path>
       </symbol>
     </svg>
   </div>
@@ -551,6 +561,49 @@
           </div>
           <div class="about__visual">
             <div class="about__visualwrapper stickyparallax"><img src="./img/medic.jpg"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery">
+      <div class="wrapper">
+
+        <div class="gallery__titileline">
+          <h2 class="gallery__title">Галерея</h2>
+          <div class="gallery__buttons">
+            <a class="gallery__prev">
+              <svg>
+                <use xlink:href="#prev"></use>
+              </svg>
+            </a>
+            <a class="gallery__next">
+              <svg>
+                <use xlink:href="#next"></use>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="gallery__swiper swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide video youtubevideo" data-link="https://www.youtube.com/embed/lMXlln94B5o">
+                <svg class="video__icon">
+                  <use xlink:href="#youtube-icon"></use>
+                </svg>
+                <div class="video__shapecreator"></div>
+            </div>
+            <div class="swiper-slide"><img src="./img/medic.jpg" class="popuping"><div class="shapecreator"></div></div>
+          </div>
+        </div>
+        <div class="gallery__swiper2 swiper-container">
+          <div class="swiper-wrapper">
+              <div class="swiper-slide"><img src="./img/medic.jpg" class="popuping"></div>
+              <div class="swiper-slide"><img src="./img/medic.jpg" class="popuping"></div>
+              <div class="swiper-slide swiper-slide_splitted">
+                <div class="swiper-slide-mini"><img src="./img/medic.jpg" class="popuping"></div>
+                <div class="swiper-slide-mini"><img src="./img/medic.jpg" class="popuping"></div>
+              </div>
           </div>
         </div>
       </div>
