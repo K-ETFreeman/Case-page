@@ -711,6 +711,10 @@ a {
   left: 100%;
 }
 
+.subnav .swiper-wrapper {
+  position: static;
+}
+
 .subnav__link {
   height: 100%;
   display: -webkit-box;
@@ -719,19 +723,42 @@ a {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  position: static;
 }
 
-.subnav__link a {
+.subnav__link.active .subnav__linktext::after {
+  height: 6px;
+  max-height: 6px;
+}
+
+.subnav__linktext {
+  position: relative;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-weight: 500;
   color: #3e3f43;
   white-space: nowrap;
-  display: inline-block;
-  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0px 20px;
+}
+
+.subnav__linktext::after {
+  -webkit-transition: 0.15s ease-out;
+  -o-transition: 0.15s ease-out;
+  transition: 0.15s ease-out;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 0;
+  max-height: 0;
+  width: 100%;
+  content: "";
+  background-color: #3ea3f2;
 }
 
 @-webkit-keyframes roll {
@@ -1616,6 +1643,118 @@ a {
   background-color: #3ea3f2;
 }
 
+body {
+  position: relative;
+}
+
+.simplepopup {
+  z-index: 20;
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: 0.3s ease-out;
+  -o-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+  width: 840px;
+  max-width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: white;
+  -webkit-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.simplepopup.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.simplepopup__block {
+  padding: 30px 25px;
+}
+
+.simplepopup__list-title {
+  font-family: Raleway;
+  color: #3ea3f2;
+  font-size: 18px;
+  margin-bottom: 18px;
+  display: block;
+}
+
+.simplepopup__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.simplepopup__list li {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.simplepopup__list li::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  left: -25px;
+  width: 0px;
+  max-width: 0px;
+  -webkit-transition: .15s ease-out;
+  -o-transition: .15s ease-out;
+  transition: .15s ease-out;
+  background-color: #3ea3f2;
+  -webkit-transform: scaleX(0);
+      -ms-transform: scaleX(0);
+          transform: scaleX(0);
+}
+
+.simplepopup__list li:hover::before {
+  width: 6px;
+  max-width: 6px;
+  -webkit-transform: scaleX(1);
+      -ms-transform: scaleX(1);
+          transform: scaleX(1);
+}
+
+.simplepopup__list li:hover a::before {
+  opacity: 1;
+}
+
+.simplepopup__list li a {
+  display: block;
+  padding: 0px 10px;
+  position: relative;
+  color: #3e3f43;
+  font-family: Raleway;
+  font-size: 16px;
+  font-weight: 300;
+  -webkit-transform: translateX(-10px);
+      -ms-transform: translateX(-10px);
+          transform: translateX(-10px);
+}
+
+.simplepopup__list li a::before {
+  position: absolute;
+  left: 10px;
+  top: 0;
+  content: attr(data-text);
+  -webkit-transform: translateX(0.5px);
+      -ms-transform: translateX(0.5px);
+          transform: translateX(0.5px);
+  -webkit-transition: .15s ease-out;
+  -o-transition: .15s ease-out;
+  transition: .15s ease-out;
+  opacity: 0;
+}
+
 .wrapper {
   height: 100%;
   max-width: 1450px;
@@ -2114,6 +2253,10 @@ section {
 }
 
 @media screen and (min-width: 1200px) {
+  .subnav__swiper {
+    overflow: visible;
+  }
+
   .subnav__swiper ul {
     display: -webkit-box !important;
     display: -ms-flexbox !important;
@@ -2124,7 +2267,6 @@ section {
   }
 
   .subnav__swiper ul li {
-    width: auto !important;
     margin-right: 35px;
   }
 
@@ -2707,6 +2849,14 @@ section {
 
   .footer__endline span {
     font-size: calc(12px + (100vw - 320px) * (0.00893));
+  }
+
+  .simplepopup__list-title {
+    font-size: calc(16px + (100vw - 320px) * (0.00446));
+  }
+
+  .simplepopup__list li a {
+    font-size: calc(14px + (100vw - 320px) * (0.00446));
   }
 
   .wrapper {
