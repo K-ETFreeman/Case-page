@@ -159,129 +159,74 @@ var gallerySwiper = new Swiper('.gallery__swiper2', {
 });
 ; //tags logic, IE-compatible
 
-var LArrow = document.querySelector('.tags-linewrapper-leftarrow'),
-    RArrow = document.querySelector('.tags-linewrapper-rightarrow');
-var LineWrapper = document.querySelector('.tags-linewrapper:first-child'),
-    Line = document.querySelector('.tags-linewrapper:first-child .tags-line');
-var TagsOffset = 0;
+if (window.NodeList && !NodeList.prototype.forEach) {
+  NodeList.prototype.forEach = function (callback, thisArg) {
+    thisArg = thisArg || window;
 
-function checkArrows(offset) {
-  var end = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : Line.querySelector('a:last-child').getBoundingClientRect().right;
-  if (offset == 0) LArrow.classList.add('tags-linewrapper-leftarrow_hidden');else LArrow.classList.remove('tags-linewrapper-leftarrow_hidden');
-  if (end > LineWrapper.getBoundingClientRect().right) RArrow.classList.remove('tags-linewrapper-rightarrow_hidden');else RArrow.classList.add('tags-linewrapper-rightarrow_hidden');
-}
-
-checkArrows(0);
-
-function findEdges() {
-  var padding = parseFloat(getComputedStyle(LineWrapper.querySelector('.tags-linewrapper-content')).getPropertyValue('padding-left'));
-  var Ledge = LineWrapper.getBoundingClientRect().left + padding;
-  var Redge = LineWrapper.getBoundingClientRect().right - padding;
-  var l = undefined,
-      r = 0,
-      falseL = 0;
-
-  for (var i = 0; i < Line.children.length; i++) {
-    var item = Line.children[i];
-    if (item.classList.contains('tags-line-item_selected')) continue;
-
-    if (item.getBoundingClientRect().left >= Ledge) {
-      l = i;
-      Ledge = Infinity;
+    for (var i = 0; i < this.length; i++) {
+      callback.call(thisArg, this[i], i, this);
     }
-
-    if (item.getBoundingClientRect().right <= Redge) r = i;
-    falseL = i;
-  }
-
-  if (l == undefined) l = falseL;
-  if (false == undefined) TagsOffset = 0;
-  Ledge = LineWrapper.getBoundingClientRect().left + padding;
-  var firstRight = undefined,
-      firstLeft = undefined,
-      secondLeft = undefined,
-      secondRight = undefined;
-
-  for (var _i = r + 1; _i < Line.children.length; _i++) {
-    var _item = Line.children[_i];
-
-    if (!_item.classList.contains('tags-line-item_selected')) {
-      if (!firstRight) {
-        firstRight = _item;
-
-        if (firstRight.getBoundingClientRect().right - Redge < 3) {
-          firstRight = undefined;
-        }
-
-        continue;
-      }
-
-      secondRight = _item;
-      break;
-    }
-  }
-
-  for (var _i2 = l == falseL ? l : l - 1; _i2 >= 0; _i2--) {
-    var _item2 = Line.children[_i2];
-
-    if (!_item2.classList.contains('tags-line-item_selected')) {
-      if (!firstLeft) {
-        firstLeft = _item2;
-
-        if (Ledge - firstLeft.getBoundingClientRect().left < 3) {
-          firstLeft = undefined;
-        }
-
-        continue;
-      }
-
-      secondLeft = _item2;
-      break;
-    }
-  }
-
-  return {
-    'Ledge': Line.children[l].getBoundingClientRect().left,
-    'Redge': Line.children[r].getBoundingClientRect().right,
-    'l': l,
-    'r': r,
-    'AllowRightOffset': Redge - Line.children[r].getBoundingClientRect().right,
-    'RightOffset': firstRight ? firstRight.getBoundingClientRect().right - Redge : undefined,
-    'LeftOffset': firstLeft ? Ledge - firstLeft.getBoundingClientRect().left : undefined,
-    'rightEnd': firstRight == undefined || Line.children.length == 0 ? true : false,
-    'leftEnd': firstLeft == undefined || Line.children.length == 0 ? true : false,
-    'leftWillEnd': secondLeft == undefined ? true : false,
-    'rightWillEnd': secondRight == undefined ? true : false
   };
 }
 
-RArrow.onclick = function () {
-  var data = findEdges();
+var LArrow = document.querySelector('.tags-linewrapper-leftarrow'),
+    RArrow = document.querySelector('.tags-linewrapper-rightarrow');
+var LineWrapper = document.querySelector('.tags-linewrapper-content'),
+    Line = document.querySelector('.tags-linewrapper:first-child .tags-line');
+var l,
+    r,
+    ROffset,
+    LOffset = 0,
+    currentOffset = 0;
 
-  if (data.RightOffset) {
-    TagsOffset -= data.RightOffset;
-    Line.style.transform = "translateX(" + TagsOffset + 'px)';
-    if (TagsOffset < 0) LArrow.classList.remove('tags-linewrapper-leftarrow_hidden');
+function tagsData() {
+  var shift = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+  var Wrapperdata = LineWrapper.getBoundingClientRect(),
+      baseLeft = Wrapperdata.left + parseInt(getComputedStyle(LineWrapper).paddingLeft) - 4,
+      baseRight = Wrapperdata.right - parseInt(getComputedStyle(LineWrapper).paddingRight) - 15;
+  r = -1, l = -1;
+
+  for (var i = 0; i < Line.children.length; i++) {
+    if (Line.children[i].getBoundingClientRect().right > baseRight + shift && r == -1) {
+      r = i;
+      ROffset = Math.ceil(Line.children[i].getBoundingClientRect().right - baseRight - shift);
+    }
+
+    if (Line.children[i].getBoundingClientRect().left < baseLeft + shift && i > l) {
+      l = i;
+      LOffset = Math.ceil(baseLeft - Line.children[i].getBoundingClientRect().left + shift);
+    }
   }
 
-  if (data.rightWillEnd || data.RightOffset == undefined) RArrow.classList.add('tags-linewrapper-rightarrow_hidden');
+  if (l == -1) {
+    LOffset = 0;
+    LArrow.classList.add('tags-linewrapper-leftarrow_hidden');
+  } else LArrow.classList.remove('tags-linewrapper-leftarrow_hidden');
+
+  if (r == -1) {
+    ROffset = 0;
+    RArrow.classList.add('tags-linewrapper-rightarrow_hidden');
+  } else RArrow.classList.remove('tags-linewrapper-rightarrow_hidden');
+}
+
+tagsData();
+
+RArrow.onclick = function () {
+  var shift = ROffset;
+  tagsData(shift);
+  currentOffset -= shift;
+  Line.style.setProperty('transform', 'translateX(' + currentOffset + 'px)');
 };
 
 LArrow.onclick = function () {
-  var data = findEdges();
-
-  if (data.LeftOffset) {
-    if (data.RightOffset || data.LeftOffset > data.AllowRightOffset) RArrow.classList.remove('tags-linewrapper-rightarrow_hidden');
-    TagsOffset += data.LeftOffset;
-    Line.style.transform = "translateX(" + TagsOffset + 'px)';
-  }
-
-  if (data.leftWillEnd) LArrow.classList.add('tags-linewrapper-leftarrow_hidden');
+  var shift = LOffset;
+  tagsData(-shift);
+  currentOffset += shift;
+  Line.style.setProperty('transform', 'translateX(' + currentOffset + 'px)');
 };
 
+tagsData();
 window.addEventListener('resize', function () {
-  var data = findEdges();
-  if (data.RightOffset == undefined || data.rightEnd) RArrow.classList.add('tags-linewrapper-rightarrow_hidden');else RArrow.classList.remove('tags-linewrapper-rightarrow_hidden');
   scratchFooterTags();
 });
 
@@ -409,6 +354,16 @@ document.addEventListener('scroll', parallaxPosition);
   var setCoords = function setCoords(item, parCoords) {
     item.style.setProperty('top', parCoords.bottom + 'px');
     if (parCoords.left + item.offsetWidth < window.innerWidth) item.style.setProperty('left', parCoords.left + 'px');else item.style.setProperty('right', '0px');
+
+    if (window.innerWidth <= 500) {
+      var max = 0;
+
+      for (var i = 0; i < item.children.length; i++) {
+        if (item.children[i].offsetWidth > max) max = item.children[i].offsetWidth;
+      }
+
+      item.style.setProperty('width', max + 'px');
+    }
   };
 
   document.querySelectorAll('.simplepopup').forEach(function (item) {
@@ -441,8 +396,12 @@ document.addEventListener('scroll', parallaxPosition);
     }
   });
   window.addEventListener('resize', function () {
-    return document.querySelectorAll('.simplepopup.active,.subnav__link.active').forEach(function (item) {
-      return item.classList.remove('active');
+    return document.querySelectorAll('.simplepopup,.subnav__link.active').forEach(function (item) {
+      item.classList.remove('active');
+      item.style.removeProperty('width');
+      item.style.removeProperty('right');
+      item.style.removeProperty('left');
+      item.style.removeProperty('top');
     });
   });
 }

@@ -1652,9 +1652,10 @@ body {
   position: absolute;
   pointer-events: none;
   opacity: 0;
-  -webkit-transition: 0.3s ease-out;
-  -o-transition: 0.3s ease-out;
-  transition: 0.3s ease-out;
+  top: 0;
+  -webkit-transition: opacity 0.3s ease-out;
+  -o-transition: opacity 0.3s ease-out;
+  transition: opacity 0.3s ease-out;
   width: 840px;
   max-width: 100%;
   display: -webkit-box;
@@ -2768,6 +2769,26 @@ section {
   .about__visualwrapper img {
     -webkit-box-shadow: 0 40px 50px -40px rgba(0, 0, 0, 0.4);
             box-shadow: 0 40px 50px -40px rgba(0, 0, 0, 0.4);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .simplepopup {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+
+  .simplepopup__block:not(:last-child) {
+    padding-bottom: 0;
+  }
+
+  .simplepopup__list li {
+    margin-bottom: 4px;
   }
 }
 
