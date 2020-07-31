@@ -353,6 +353,7 @@ document.addEventListener('scroll', parallaxPosition);
 {
   var setCoords = function setCoords(item, parCoords) {
     item.style.setProperty('top', parCoords.bottom + 'px');
+    item.style.removeProperty('width');
     if (parCoords.left + item.offsetWidth < window.innerWidth) item.style.setProperty('left', parCoords.left + 'px');else item.style.setProperty('right', '0px');
 
     if (window.innerWidth <= 500) {
@@ -398,7 +399,6 @@ document.addEventListener('scroll', parallaxPosition);
   window.addEventListener('resize', function () {
     return document.querySelectorAll('.simplepopup,.subnav__link.active').forEach(function (item) {
       item.classList.remove('active');
-      item.style.removeProperty('width');
       item.style.removeProperty('right');
       item.style.removeProperty('left');
       item.style.removeProperty('top');
