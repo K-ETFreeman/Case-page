@@ -351,12 +351,12 @@ window.addEventListener('resize', parallaxPosition);
 document.addEventListener('scroll', parallaxPosition);
 ;
 {
-  var setCoords = function setCoords(item, parCoords) {
+  var setCoords = function setCoords(item, parCoords, widthcontrol) {
     item.style.setProperty('top', parCoords.bottom + 'px');
     item.style.removeProperty('width');
     if (parCoords.left + item.offsetWidth < window.innerWidth) item.style.setProperty('left', parCoords.left + 'px');else item.style.setProperty('right', '0px');
 
-    if (window.innerWidth <= 500) {
+    if (window.innerWidth <= widthcontrol) {
       var max = 0;
 
       for (var i = 0; i < item.children.length; i++) {
@@ -373,26 +373,79 @@ document.addEventListener('scroll', parallaxPosition);
     item.remove();
     document.body.appendChild(item);
 
-    item.onclick = function () {
-      return document.querySelectorAll('.simplepopup.active,.subnav__link.active').forEach(function (item) {
-        return item.classList.remove('active');
-      });
-    };
-
     if (trigger == 'click') {
       parent.onclick = function (e) {
         e.preventDefault();
-        var turnOn = true;
-        if (item.classList.contains('active')) turnOn = false;
-        document.querySelectorAll('.simplepopup.active,.subnav__link.active').forEach(function (item) {
-          return item.classList.remove('active');
-        });
+        if (item.classList.contains('active')) return item.classList.remove('active');
+        setCoords(item, parent.getBoundingClientRect(), parent, 0);
+        item.classList.add('active');
+      };
+    }
 
-        if (turnOn) {
-          setCoords(item, parent.children[0].getBoundingClientRect(), parent);
-          parent.classList.add('active');
-          item.classList.add('active');
+    if (trigger == 'hover') {
+      var hovP = false,
+          hovI = false,
+          showtime = 0;
+
+      var hide = function hide() {
+        item.classList.remove('active');
+        parent.classList.remove('active');
+        showtime = 0;
+      };
+
+      var show = function show() {
+        item.classList.add('active');
+        parent.classList.add('active');
+        setCoords(item, parent.children[0].getBoundingClientRect(), parent, 500);
+        showtime = new Date().getTime();
+      };
+
+      parent.onclick = function (e) {
+        e.preventDefault();
+
+        if (hovP && !showtime) {
+          show();
+          console.log('chickshow');
         }
+
+        if (showtime && new Date().getTime() - showtime > 300) {
+          hide();
+          console.log('clickhide');
+        }
+      };
+
+      item.onclick = function (e) {
+        e.preventDefault();
+
+        if (hovI && !showtime) {
+          show();
+          console.log('chickshow');
+        }
+
+        if (showtime && new Date().getTime() - showtime > 300) {
+          hide();
+          console.log('clickhide');
+        }
+      };
+
+      parent.onmouseenter = function () {
+        hovP = true;
+        if (!item.classList.contains('active')) show();
+      };
+
+      parent.onmouseleave = function () {
+        hovP = false;
+        if (!hovP && !hovI) hide();
+      };
+
+      item.onmouseenter = function () {
+        hovI = true;
+        if (!item.classList.contains('active')) show();
+      };
+
+      item.onmouseleave = function () {
+        hovI = false;
+        if (!hovP && !hovI) hide();
       };
     }
   });
@@ -410,4 +463,18 @@ var textarea = document.querySelector('.calculation__form textarea');
 textarea.addEventListener('input', function () {
   if (textarea.offsetHeight < textarea.scrollHeight) textarea.classList.add('overflow');else textarea.classList.remove('overflow');
 });
+var burger = document.querySelector('.burger');
+
+burger.onclick = function (e) {
+  if (burger.classList.contains('active')) {
+    window.scroll({
+      top: 0,
+      behavior: 'smooth'
+    });
+    bodyScrollLock.disableBodyScroll(document.body);
+  } else {
+    bodyScrollLock.enableBodyScroll(document.body);
+  }
+};
+
 objectFitImages();
