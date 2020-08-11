@@ -3335,6 +3335,18 @@ section {
     font-size: calc(10.5px + (100vw - 1440px) * (0.00729));
   }
 
+  .tags {
+    margin-top: calc(67.5px + (100vw - 1440px) * (0.04688));
+  }
+
+  .tags {
+    margin-bottom: calc(15px + (100vw - 1440px) * (0.01042));
+  }
+
+  .tags-line-item {
+    font-size: calc(13.5px + (100vw - 1440px) * (0.00937));
+  }
+
   .footer__content {
     padding-bottom: calc(60px + (100vw - 1440px) * (0.04167));
   }
@@ -3651,6 +3663,18 @@ section {
 
   .breadcrumbs ul li a {
     font-size: 10.5px;
+  }
+
+  .tags {
+    margin-top: 67.5px;
+  }
+
+  .tags {
+    margin-bottom: 15px;
+  }
+
+  .tags-line-item {
+    font-size: 13.5px;
   }
 
   .footer__logoblock {
