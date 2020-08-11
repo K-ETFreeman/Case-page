@@ -537,7 +537,7 @@ var subnavSwiper = new Swiper('.subnav__swiper', {
       }
     }
   },
-  spaceBetween: 100,
+  spaceBetween: 150,
   breakpoints: {
     320: {
       slidesPerView: 1,

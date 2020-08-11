@@ -2745,6 +2745,11 @@ section {
     margin-right: 80px;
   }
 
+  .case__visual {
+    position: relative;
+    z-index: 4;
+  }
+
   .about__content {
     -ms-flex-wrap: wrap-reverse;
         flex-wrap: wrap-reverse;
